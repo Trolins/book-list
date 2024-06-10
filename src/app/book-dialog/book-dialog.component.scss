@@ -1,0 +1,25 @@
+.dialog-wrapper {
+    width: 800px;
+    textarea {
+        resize: none;
+    }
+    mat-form-field {
+        width: 100%;
+    }
+    mat-dialog-actions {
+      display: flex;
+      justify-content: center;
+    }  
+    .image-url,
+    .description {
+        width: 75%;
+    }  
+    .image-book {
+        position: absolute;
+        width: 160px;
+        height: 220px;
+        bottom: 104px;
+        right: 24px;
+    }
+}
+  

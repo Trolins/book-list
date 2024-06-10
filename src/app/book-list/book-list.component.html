@@ -1,0 +1,36 @@
+<div class="book-list">
+    <mat-toolbar color="primary">
+        <span>Book List</span>
+    </mat-toolbar>
+    <button mat-raised-button color="accent" (click)="openBookDialog(null, 'add')" class="add-book">Add Book</button>
+    
+    <mat-form-field class="search">        
+      <mat-label>Search: </mat-label>
+      <input matInput [formControl]="searchControl" placeholder="Author or Title">
+    </mat-form-field>
+    <mat-list>
+      <mat-list-item>
+        <p matLine>#</p>
+        <p matLine>Title</p>
+        <p matLine>Author</p>
+        <p matLine>Year</p>
+        <p matLine>&nbsp;</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item *ngFor="let book of filteredBooks" (click)="openBookDialog(book, 'view')">
+        <p matLine>{{book.id}}</p>
+        <p matLine>{{ book.title }}</p>
+        <p matLine>{{ book.author }}</p>
+        <p matLine>{{ book.year }}</p>
+        <p>
+          <button mat-icon-button (click)="editBook($event, book)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deleteBook($event, book.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </p>
+      </mat-list-item>
+    </mat-list>
+</div>
+  

@@ -1,0 +1,36 @@
+<div class="dialog-wrapper">
+    <h2 mat-dialog-title>
+        {{ data.mode === 'view' ? 'Book Details' : data.mode === 'edit' ? 'Edit Book' : 'Add Book' }}
+      </h2>
+      <mat-dialog-content>
+        <form [formGroup]="bookForm">
+          <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" [readonly]="data.mode === 'view'">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Author</mat-label>
+            <input matInput formControlName="author" [readonly]="data.mode === 'view'">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Year</mat-label>
+            <input matInput formControlName="year" [readonly]="data.mode === 'view'">
+          </mat-form-field>
+          <mat-form-field class="image-url">
+            <mat-label>Cover Image URL</mat-label>
+            <input matInput formControlName="coverImage" [readonly]="data.mode === 'view'">
+          </mat-form-field>
+          <mat-form-field class="description">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description" [readonly]="data.mode === 'view'" rows="5" resize="none"></textarea>
+          </mat-form-field>
+          <img  class="image-book" [src]="bookForm.get('coverImage')?.value || bookImg" alt="{{ bookForm.get('title')?.value }} cover">
+        </form>
+      </mat-dialog-content>
+      <mat-dialog-actions>
+        <button mat-raised-button color="accent" *ngIf="data.mode === 'view'" (click)="edit()">Edit</button>
+        <button mat-raised-button color="warn" *ngIf="data.mode === 'view'" (click)="deleteBook()">Delete</button>
+        <button mat-raised-button color="primary" *ngIf="isEditMode" (click)="save()">Save</button>
+        <button mat-raised-button (click)="cancel()">Cancel</button>
+      </mat-dialog-actions>
+</div>
